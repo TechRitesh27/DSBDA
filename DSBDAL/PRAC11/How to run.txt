@@ -1,0 +1,56 @@
+Sure! Here's a **sample input file** for your Word Count MapReduce program:
+
+---
+
+### 📄 **Sample Input File: `input.txt`**
+
+```txt
+hadoop is an open source framework
+hadoop is used for big data processing
+mapreduce is a part of hadoop
+```
+
+---
+
+### 🔍 Expected Output (word counts):
+
+When your program runs on the above file, the **output** should be something like:
+
+```txt
+a       2
+an      1
+big     1
+data    1
+for     1
+framework       1
+hadoop  3
+is      3
+mapreduce       1
+of      1
+open    1
+part    1
+processing      1
+source  1
+used    1
+```
+
+---
+
+### 📁 How to Use the Sample File
+
+1. Save the above input as a file named `input.txt`.
+2. Put it into your HDFS directory:
+   ```bash
+   hdfs dfs -mkdir /wordcount_input
+   hdfs dfs -put input.txt /wordcount_input/
+   ```
+3. Then run your MapReduce job with:
+   ```bash
+   hadoop jar WordCount.jar WordCount /wordcount_input /wordcount_output
+   ```
+4. View the result:
+   ```bash
+   hdfs dfs -cat /wordcount_output/part-r-00000
+   ```
+
+Would you like me to generate the file and package it for download?

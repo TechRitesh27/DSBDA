@@ -1,0 +1,1 @@
+Hadoop is great and Hadoop is scalable

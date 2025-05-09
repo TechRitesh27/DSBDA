@@ -1,0 +1,6 @@
+2024-04-22 10:01:23 [INFO] Starting system
+2024-04-22 10:01:24 [WARNING] Low disk space
+2024-04-22 10:01:25 [ERROR] Disk read failed
+2024-04-22 10:01:26 [INFO] System running
+2024-04-22 10:01:27 [ERROR] Out of memory
+2024-04-22 10:01:28 [WARNING] High CPU usage

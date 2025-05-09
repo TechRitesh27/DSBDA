@@ -1,0 +1,97 @@
+To **run your Hadoop MapReduce log analyzer**, follow these step-by-step instructions on **compiling**, **packaging**, **uploading**, and **executing** the job on Hadoop.
+
+---
+
+## ✅ 1. **Set Up Your Files**
+Make sure you have:
+- `LogAnalyzer.java` → contains the Mapper and Reducer.
+- `LogAnalyzerJob.java` → contains the main method to set up the job.
+- `logs.txt` → your sample log file to process.
+
+---
+
+## ✅ 2. **Compile and Package the Code**
+
+### 🔹 A. Open your terminal (Linux/macOS) or Hadoop-compatible shell.
+
+Make sure Hadoop is installed and `hadoop` command works. Then:
+
+### 🔹 B. Compile the Java code
+```bash
+javac -classpath $(hadoop classpath) -d . LogAnalyzer.java LogAnalyzerJob.java
+```
+
+> `-d .` puts `.class` files in the current folder.
+
+### 🔹 C. Package into a JAR file
+```bash
+jar -cvf LogAnalyzer.jar *.class
+```
+
+---
+
+## ✅ 3. **Prepare Input on HDFS**
+
+### 🔹 A. Create a folder on HDFS and upload your `logs.txt` file:
+```bash
+hdfs dfs -mkdir /logs_input
+hdfs dfs -put logs.txt /logs_input/
+```
+
+> Make sure `logs.txt` contains log entries like:
+```
+2024-04-22 10:01:23 [INFO] System boot
+2024-04-22 10:01:24 [WARNING] Low disk
+2024-04-22 10:01:25 [ERROR] Disk failed
+```
+
+---
+
+## ✅ 4. **Run the MapReduce Job**
+
+```bash
+hadoop jar LogAnalyzer.jar LogAnalyzerJob /logs_input /logs_output
+```
+
+- `LogAnalyzer.jar` → your packaged job
+- `LogAnalyzerJob` → your main class
+- `/logs_input` → HDFS input directory
+- `/logs_output` → HDFS output directory (must **not already exist**)
+
+> If `/logs_output` exists, delete it first:
+```bash
+hdfs dfs -rm -r /logs_output
+```
+
+---
+
+## ✅ 5. **Check the Output**
+
+Once the job finishes, view the results:
+
+```bash
+hdfs dfs -cat /logs_output/part-r-00000
+```
+
+🔍 Example output:
+```
+ERROR   2
+INFO    3
+WARNING 1
+```
+
+---
+
+## ✅ Summary
+
+| Step | Command |
+|------|---------|
+| Compile | `javac -classpath $(hadoop classpath) -d . LogAnalyzer.java LogAnalyzerJob.java` |
+| Package | `jar -cvf LogAnalyzer.jar *.class` |
+| Upload input | `hdfs dfs -mkdir /logs_input && hdfs dfs -put logs.txt /logs_input/` |
+| Run job | `hadoop jar LogAnalyzer.jar LogAnalyzerJob /logs_input /logs_output` |
+| View output | `hdfs dfs -cat /logs_output/part-r-00000` |
+
+---
+
+Would you like a ready-made `.jar` file and sample logs? Or a shell script to automate this process?

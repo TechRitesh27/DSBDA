@@ -1,0 +1,25 @@
+### ✅ **Compilation Steps for the Weather MapReduce Project (Using Maven)**
+
+Make sure you're in the **project root directory** (where your `pom.xml` is located):
+
+---
+
+### 🔹 1. Clean and compile the project using Maven:
+
+```bash
+mvn clean package
+```
+
+---
+
+### 🔹 2. After successful compilation, you’ll get a JAR file:
+
+```bash
+target/weather-1.0.jar
+```
+
+You can now run this JAR with Hadoop.
+
+---
+
+Let me know if you want the Hadoop run command too.
